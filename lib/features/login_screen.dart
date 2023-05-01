@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
+import 'package:flutter_tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -18,15 +20,15 @@ class LoginScreen extends StatelessWidget {
             horizontal: Sizes.size40,
           ),
           child: Column(
-            children: [
+            children: const [
               Gaps.v80,
-              const Text('Log in to TikTok',
+              Text('Log in to TikTok',
                   style: TextStyle(
                     fontSize: Sizes.size24,
                     fontWeight: FontWeight.w800,
                   )),
               Gaps.v20,
-              const Text(
+              Text(
                 'Manage your account, check notifications, comment on videos, and more.',
                 style: TextStyle(
                   fontSize: Sizes.size16,
@@ -34,29 +36,15 @@ class LoginScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              Gaps.v20,
-              // Container, BoxDecoration, Row, Icon, Text
-              Container(
-                // width: Sizes.size48,
-                // height: Sizes.size20,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 2,
-                  ),
-                ),
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.star,
-                    ),
-                    Gaps.h36,
-                    Text(
-                      'Use phone or email',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              Gaps.v40,
+              AuthButton(
+                icon: FaIcon(FontAwesomeIcons.user),
+                text: "Use email & password",
+              ),
+              Gaps.v14,
+              AuthButton(
+                icon: FaIcon(FontAwesomeIcons.apple),
+                text: "Continue with Apple",
               ),
             ],
           ),

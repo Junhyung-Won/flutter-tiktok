@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
-import 'package:flutter_tiktok_clone/screens/login/login_screen.dart';
+import 'package:flutter_tiktok_clone/features/authentication/widgets/auth_button.dart';
+import 'package:flutter_tiktok_clone/features/login_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class SingUpScreen extends StatelessWidget {
-  const SingUpScreen({super.key});
+class SignUpScreen extends StatelessWidget {
+  const SignUpScreen({super.key});
 
   void onLoginTap(BuildContext context) {
     Navigator.of(context).push(
@@ -23,15 +25,15 @@ class SingUpScreen extends StatelessWidget {
             horizontal: Sizes.size40,
           ),
           child: Column(
-            children: [
+            children: const [
               Gaps.v80,
-              const Text('Sign Up for TikTok',
+              Text('Sign Up for TikTok',
                   style: TextStyle(
                     fontSize: Sizes.size24,
                     fontWeight: FontWeight.w800,
                   )),
               Gaps.v20,
-              const Text(
+              Text(
                 'Create a Profile, follow other accounts, make your own videos, and more.',
                 style: TextStyle(
                   fontSize: Sizes.size16,
@@ -39,30 +41,42 @@ class SingUpScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
-              Gaps.v20,
-              // Container, BoxDecoration, Row, Icon, Text
-              Container(
-                // width: Sizes.size48,
-                // height: Sizes.size20,
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 2,
-                  ),
-                ),
-                child: Row(
-                  children: const [
-                    Icon(
-                      Icons.star,
-                    ),
-                    Gaps.h36,
-                    Text(
-                      'Use phone or email',
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                ),
+              Gaps.v40,
+              AuthButton(
+                icon: FaIcon(FontAwesomeIcons.user),
+                text: "Use email & password",
               ),
+              Gaps.v14,
+              AuthButton(
+                icon: FaIcon(FontAwesomeIcons.apple),
+                text: "Continue with Apple",
+              ),
+
+              // Container, BoxDecoration, Row, Icon, Text
+              // Container(
+              //   // FractionallySizedBox
+              //   // width: Sizes.size48,
+              //   // height: Sizes.size20,
+
+              //   decoration: BoxDecoration(
+              //     border: Border.all(
+              //       color: Colors.grey.shade300,
+              //       width: Sizes.size1,
+              //     ),
+              //   ),
+              //   child: Row(
+              //     children: const [
+              //       Icon(
+              //         Icons.star,
+              //       ),
+              //       Gaps.h40,
+              //       Text(
+              //         'Use phone or email',
+              //         textAlign: TextAlign.center,
+              //       ),
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
