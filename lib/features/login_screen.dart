@@ -7,7 +7,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
-  void onSignUpTap(BuildContext context) {
+  void _onSignUpTap(BuildContext context) {
     Navigator.of(context).pop();
   }
 
@@ -52,7 +52,7 @@ class LoginScreen extends StatelessWidget {
       ),
       bottomNavigationBar: BottomAppBar(
         elevation: 3,
-        color: Colors.grey.shade200,
+        color: Colors.grey.shade100,
         child: Padding(
           padding: const EdgeInsets.symmetric(
             vertical: Sizes.size32,
@@ -65,7 +65,7 @@ class LoginScreen extends StatelessWidget {
               ),
               Gaps.h5,
               GestureDetector(
-                onTap: () => onSignUpTap(context),
+                onTap: () => _onSignUpTap(context),
                 child: Text(
                   'Sign Up',
                   style: TextStyle(
