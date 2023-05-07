@@ -18,7 +18,10 @@ class _EmailScreenState extends State<EmailScreen> {
   String? _isEmailValid() {
     if (_email.isEmpty) return null;
     final regExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+      caseSensitive: false,
+      unicode: true,
+    );
     if (!regExp.hasMatch(_email)) {
       return "Not valid";
     }

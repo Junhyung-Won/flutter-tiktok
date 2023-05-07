@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
 import 'package:flutter_tiktok_clone/features/authentication/widgets/form_button.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginFormScreen extends StatefulWidget {
   const LoginFormScreen({super.key});
@@ -13,6 +14,17 @@ class LoginFormScreen extends StatefulWidget {
 class _LoginFormScreenState extends State<LoginFormScreen> {
   final GlobalKey<FormState> _formkey = GlobalKey<FormState>();
   Map<String, String> formData = {};
+  bool _obscureText = true;
+  final TextEditingController _passwordTextController = TextEditingController();
+
+  void _toggleObscureText() {
+    _obscureText = !_obscureText;
+    setState(() {});
+  }
+
+  void _onClearTap() {
+    _passwordTextController.clear();
+  }
 
   void _onSubmitTap() {
     if (_formkey.currentState != null) {
@@ -50,8 +62,17 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                     ),
                   ),
                   validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return "Plase write your email";
+                    if (value == null || value.isEmpty) {
+                      return "Please enter an email.";
+                    }
+
+                    final regExp = RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+                      caseSensitive: false,
+                      unicode: true,
+                    );
+                    if (!regExp.hasMatch(value)) {
+                      return "Not valid";
                     }
                     return null;
                   },
@@ -63,6 +84,8 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                 ),
                 Gaps.v16,
                 TextFormField(
+                  obscureText: _obscureText,
+                  controller: _passwordTextController,
                   decoration: InputDecoration(
                     hintText: 'Password',
                     enabledBorder: UnderlineInputBorder(
@@ -75,11 +98,44 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                         color: Colors.grey.shade400,
                       ),
                     ),
+                    suffix: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        GestureDetector(
+                          onTap: _onClearTap,
+                          child: FaIcon(
+                            FontAwesomeIcons.solidCircleXmark,
+                            color: Colors.grey.shade400,
+                            size: Sizes.size20,
+                          ),
+                        ),
+                        Gaps.h12,
+                        GestureDetector(
+                          onTap: _toggleObscureText,
+                          child: FaIcon(
+                            _obscureText
+                                ? FontAwesomeIcons.eye
+                                : FontAwesomeIcons.eyeSlash,
+                            color: Colors.grey.shade400,
+                            size: Sizes.size20,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return "Plase write your password";
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter a password.';
                     }
+
+                    final regExp = RegExp(
+                      r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$',
+                    );
+
+                    if (!regExp.hasMatch(value)) {
+                      return 'Passwords must be at least 8 characters long and contain at least one letter, one number, and one special character.';
+                    }
+
                     return null;
                   },
                   onSaved: (newValue) {
