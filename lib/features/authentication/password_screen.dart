@@ -22,7 +22,6 @@ class _PasswordScreenState extends State<PasswordScreen> {
   }
 
   bool _isLettersValid() {
-    //final regExp = RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]");
     final regExp = RegExp(
         r'^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$');
     return _password.isNotEmpty && regExp.hasMatch(_password);
