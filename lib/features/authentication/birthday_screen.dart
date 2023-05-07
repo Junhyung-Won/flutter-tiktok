@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
-import 'package:flutter_tiktok_clone/features/authentication/email_screen.dart';
 import 'package:flutter_tiktok_clone/features/authentication/widgets/form_button.dart';
+import 'package:flutter_tiktok_clone/features/onboarding/interests_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BirthdayScreen extends StatefulWidget {
   const BirthdayScreen({super.key});
@@ -39,7 +40,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
 
   void _onNextTap() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => const EmailScreen()));
+        .push(MaterialPageRoute(builder: (context) => const InterestsScreen()));
   }
 
   @override
@@ -57,20 +58,35 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Gaps.v40,
-            const Text(
-              "When is your birthday?",
-              style: TextStyle(
-                fontSize: Sizes.size20,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            Gaps.v8,
-            const Text(
-              "Your birthday won't be shown publicity.",
-              style: TextStyle(
-                fontSize: Sizes.size16,
-                color: Colors.black54,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text(
+                      "When is your birthday?",
+                      style: TextStyle(
+                        fontSize: Sizes.size20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Gaps.v8,
+                    Text(
+                      "Your birthday won't be shown publicity.",
+                      style: TextStyle(
+                        fontSize: Sizes.size12,
+                        color: Colors.black54,
+                      ),
+                    ),
+                  ],
+                ),
+                FaIcon(
+                  FontAwesomeIcons.cakeCandles,
+                  size: Sizes.size32,
+                  color: Colors.grey.shade600,
+                ),
+              ],
             ),
             Gaps.v32,
             TextField(
@@ -93,7 +109,10 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             Gaps.v16,
             GestureDetector(
               onTap: _onNextTap,
-              child: const FormButton(disabled: false),
+              child: const FormButton(
+                buttonText: "Next",
+                disabled: false,
+              ),
             ),
           ],
         ),

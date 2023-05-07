@@ -182,7 +182,9 @@ class _PasswordScreenState extends State<PasswordScreen> {
               GestureDetector(
                 onTap: _onSubmit,
                 child: FormButton(
-                    disabled: !_isPasswordValid() && !_isLettersValid()),
+                  buttonText: "Next",
+                  disabled: !_isPasswordValid() && !_isLettersValid(),
+                ),
               ),
             ],
           ),
