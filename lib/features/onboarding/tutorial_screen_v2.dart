@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tiktok_clone/constants/gaps.dart';
 import 'package:flutter_tiktok_clone/constants/sizes.dart';
+import 'package:flutter_tiktok_clone/features/main_navigation/main_navigation_screen.dart';
 
 enum Direction { right, left }
 
@@ -18,12 +19,23 @@ class _TutorialScreen2State extends State<TutorialScreen2> {
   Direction _direction = Direction.right;
   Page _showingPage = Page.first;
 
+  void _onEnterAppTap() {
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => const MainNavigationScreen(),
+      ),
+      (route) => false,
+    );
+  }
+
   void _onPanUpdate(DragUpdateDetails details) {
     if (details.delta.dx > 0) {
+      if (_direction == Direction.right) return;
       setState(() {
         _direction = Direction.right;
       });
     } else {
+      if (_direction == Direction.left) return;
       setState(() {
         _direction = Direction.left;
       });
@@ -107,7 +119,7 @@ class _TutorialScreen2State extends State<TutorialScreen2> {
                 duration: const Duration(milliseconds: 300),
                 opacity: _showingPage == Page.first ? 0 : 1,
                 child: CupertinoButton(
-                  onPressed: () {},
+                  onPressed: _onEnterAppTap,
                   color: Theme.of(context).primaryColor,
                   child: const Text('Enter the app!'),
                 ),
