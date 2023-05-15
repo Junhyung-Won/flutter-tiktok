@@ -163,7 +163,7 @@ class _VideoPostState extends State<VideoPost>
                   backgroundColor: Colors.black,
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
-                    "https://avatars.githubusercontent.com/u/3612017",
+                    "https://mblogthumb-phinf.pstatic.net/MjAxODA0MTdfMjU3/MDAxNTIzOTc0MzQ2MzI5.SjKP_TkiolueK_4ND-OWCRj2fH__8YvmRQUCBaSY-CQg.5131-AIlvh5MDA5P2Ypxyh0WEI5IzCf-tfJGA8m-9sIg.JPEG.icccaccc/dwayne-johnson.jpg?type=w800",
                   ),
                   child: Text("니꼬"),
                 ),
